@@ -4,15 +4,14 @@ import axios from "axios";
 const PostCreate = () => {
   const [postData, setPostData] = useState({
     title: "",
-    body: "",
-    user_id: "", // This will be parsed to a number
+    body: ""
   });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setPostData((prev) => ({
       ...prev,
-      [name]: name === "user_id" ? parseInt(value, 10) : value, // Ensure user_id is a number
+      [name]: value, // No need to check for user_id anymore
     }));
   };
 
@@ -30,6 +29,10 @@ const PostCreate = () => {
       .then((response) => {
         console.log("Post created successfully:", response.data);
         alert("Post created successfully!");
+        setPostData({
+          title: "",
+          body: "",
+        })
       })
       .catch((error) => {
         console.error("Error creating post:", error);
@@ -38,30 +41,30 @@ const PostCreate = () => {
   };
 
   return (
-    <div>
-      <h1>Create a New Post</h1>
-      <form onSubmit={addPost}>
+    <div className="flex flex-col items-center py-8 min-h-screen">
+      <h1 className="text-3xl font-bold text-center mb-6">Create a New Post</h1>
+      <form
+        onSubmit={addPost}
+        className="card shadow-lg bg-base-100 p-8 w-full max-w-md space-y-4"
+      >
         <input
           type="text"
           name="title"
           value={postData.title}
           onChange={handleChange}
           placeholder="Enter title"
+          className="input input-bordered w-full"
         />
         <textarea
           name="body"
           value={postData.body}
           onChange={handleChange}
           placeholder="Enter body"
+          className="textarea textarea-bordered w-full h-24"
         ></textarea>
-        <input
-          type="number"
-          name="user_id"
-          value={postData.user_id}
-          onChange={handleChange}
-          placeholder="Enter User ID"
-        />
-        <button type="submit">Submit</button>
+        <button type="submit" className="btn btn-primary w-full">
+          Submit
+        </button>
       </form>
     </div>
   );
