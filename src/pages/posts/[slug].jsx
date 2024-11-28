@@ -7,7 +7,6 @@ export default function Home() {
     <div>
       <p>Post: {router.query.slug}</p>
       <Link href="/postcreate">Create a New Post</Link>
-      <Link href="/posts">All Posts</Link>
     </div>
   );
 }
