@@ -28,7 +28,6 @@ const PostCreate = () => {
       .post("http://localhost:8080/posts", payload)
       .then((response) => {
         console.log("Post created successfully:", response.data);
-        alert("Post created successfully!");
         setPostData({
           title: "",
           body: "",
