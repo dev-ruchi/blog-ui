@@ -1,8 +1,7 @@
-import axios from "axios";
 import React from "react";
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import Navbar from "./navbar";
+import backend from "../network/backend";
 
 const AllPosts = () => {
   const [posts, setPosts] = useState([]);
@@ -12,7 +11,7 @@ const AllPosts = () => {
   }, []);
 
   function fetchPosts() {
-    axios.get("http://localhost:8080/posts").then((response) => {
+    backend.get("/posts").then((response) => {
       setPosts(response.data);
     });
   }

@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
-import axios from "axios";
+import backend from "../network/backend";
 
 export default function PostDetail() {
   const router = useRouter();
@@ -14,18 +14,10 @@ export default function PostDetail() {
     }
   }, [id]);
 
-  async function fetchPost() {
-    try {
-      const response = await axios.get(`http://localhost:8080/posts/${id}`);
-      setPost(response.data); // Save post data
-    } catch (err) {
-      if (err.response) {
-        // Handle specific error messages from the backend
-        setError(err.response.data.message || "An error occurred");
-      } else {
-        setError("Failed to fetch post");
-      }
-    }
+  function fetchPost() {
+    backend.get(`/posts/${id}`).then((response) => {
+      setPost(response.data);
+    });
   }
 
   if (error) {
@@ -41,27 +33,14 @@ export default function PostDetail() {
   }
 
   return (
-    <div>
-      <h2 className="card-title">{post.title}</h2>
-      <div className="">{post.body}</div>
-      <div className="mt-4">
-        <p>
-          <strong>Author ID:</strong> {post.user_id}
-        </p>
-        <p>
-          <strong>Created At:</strong>{" "}
-          {new Date(post.created_at).toLocaleString()}
-        </p>
-        <p>
-          <strong>Updated At:</strong>{" "}
-          {new Date(post.updated_at).toLocaleString()}
-        </p>
+    <div className="flex flex-col items-center justify-center p-4">
+      <h2 className="card-title text-center text-4xl">{post.title}</h2>
+      <div className="text-center w-full max-w-5xl text-xl mt-4 p-4">{post.body}</div>
+      <div className="mt-4 text-center">
+        <p className="text-xl text-gray-500">Writen on {new Date(post.created_at).toLocaleString()}</p>
       </div>
-      <div className="card-actions justify-end mt-4">
-        <button
-          className="btn btn-link"
-          onClick={() => router.push("/posts")}
-        >
+      <div className="card-actions justify-center mt-4">
+        <button className="btn btn-link" onClick={() => router.push("/posts")}>
           Back to Posts
         </button>
       </div>
