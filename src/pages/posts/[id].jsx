@@ -41,33 +41,29 @@ export default function PostDetail() {
   }
 
   return (
-    <div className="flex justify-center items-center  h-screen">
-      <div className="card w-96 bg-base-100 shadow-xl">
-        <div className="card-body">
-          <h2 className="card-title">{post.title}</h2>
-          <p className="">{post.body}</p>
-          <div className="mt-4">
-            <p>
-              <strong>Author ID:</strong> {post.user_id}
-            </p>
-            <p>
-              <strong>Created At:</strong>{" "}
-              {new Date(post.created_at).toLocaleString()}
-            </p>
-            <p>
-              <strong>Updated At:</strong>{" "}
-              {new Date(post.updated_at).toLocaleString()}
-            </p>
-          </div>
-          <div className="card-actions justify-end mt-4">
-            <button
-              className="btn btn-primary"
-              onClick={() => router.push("/posts")}
-            >
-              Back to Posts
-            </button>
-          </div>
-        </div>
+    <div>
+      <h2 className="card-title">{post.title}</h2>
+      <div className="">{post.body}</div>
+      <div className="mt-4">
+        <p>
+          <strong>Author ID:</strong> {post.user_id}
+        </p>
+        <p>
+          <strong>Created At:</strong>{" "}
+          {new Date(post.created_at).toLocaleString()}
+        </p>
+        <p>
+          <strong>Updated At:</strong>{" "}
+          {new Date(post.updated_at).toLocaleString()}
+        </p>
+      </div>
+      <div className="card-actions justify-end mt-4">
+        <button
+          className="btn btn-link"
+          onClick={() => router.push("/posts")}
+        >
+          Back to Posts
+        </button>
       </div>
     </div>
   );
