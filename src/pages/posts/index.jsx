@@ -1,6 +1,7 @@
 import axios from "axios";
 import React from "react";
 import { useState, useEffect } from "react";
+import Link from 'next/link';
 
 const AllPosts = () => {
   const [posts, setPosts] = useState([]);
@@ -12,7 +13,6 @@ const AllPosts = () => {
   function fetchPosts() {
     axios.get("http://localhost:8080/posts").then((response) => {
       setPosts(response.data);
-      console.log(response.data);
     });
   }
 
@@ -24,7 +24,7 @@ const AllPosts = () => {
           {posts.map((post) => (
             <div key={post.id} className="card w-full bg-base-100 shadow-xl">
               <div className="card-body">
-                <h2 className="card-title text-lg font-bold">{post.title}</h2>
+                <Link href={`/posts/${post.id}`} className="card-title text-lg font-bold">{post.title}</Link>
                 {post.body.length > 100
                   ? `${post.body.slice(0, 120)}...`
                   : post.body}
