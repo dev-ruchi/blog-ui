@@ -5,7 +5,7 @@ import Link from "next/link";
 const Navbar = () => {
   return (
    
-       <div className="navbar shadow-lg mb-6">
+       <div className="navbar shadow-lg mb-2">
           <div className="flex-1">
             <Link href="/posts" className="btn btn-ghost normal-case text-xl">
               My Blog

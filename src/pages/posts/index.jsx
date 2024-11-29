@@ -21,7 +21,7 @@ const AllPosts = () => {
       {/* Posts Section */}
 
       <div className="container mx-auto p-4">
-        <h1 className="text-3xl text-center mb-6">All Posts</h1>
+        <h1 className="text-3xl text-center mb-4">All Posts</h1>
         {posts.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {posts.map((post) => (
