@@ -33,17 +33,28 @@ export default function PostDetail() {
   }
 
   return (
-    <div className="flex flex-col">
-      <h2 className="card-title p-6 text-4xl">{post.title}</h2>
-      <div className="text-xl leading-loose p-6">{post.body}</div>
-      <div>
-        <p className="text-xl p-4 text-gray-500">
-          Writen on {new Date(post.created_at).toLocaleString()}
-        </p>
+    <div className="flex flex-col max-w-4xl mx-auto">
+      <div className="p-16">
+        <h2 className="card-title text-4xl">{post.title}</h2>
+        <div className="text-xl leading-loose mt-4">{post.body}</div>
 
-        <button className="btn btn-link" onClick={() => router.push("/posts")}>
-          Back to Posts
-        </button>
+        <div>
+          <p className="text-xl mt-4 text-gray-500">
+            Written on{" "}
+            {new Date(post.created_at).toLocaleDateString("en-US", {
+              month: "short",
+              day: "numeric",
+              year: "numeric",
+            })}
+          </p>
+
+          <button
+            className="btn btn-link p-0"
+            onClick={() => router.push("/posts")}
+          >
+            Back to Posts
+          </button>
+        </div>
       </div>
     </div>
   );
