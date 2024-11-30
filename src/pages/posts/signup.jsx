@@ -41,7 +41,7 @@ const Signup = () => {
               Name:
             </label>
             <input
-              className="input input-primary  w-full"
+              className="input input-bordered  w-full"
               value={name}
               onChange={(e) => setName(e.target.value)}
               type="text"
@@ -55,7 +55,7 @@ const Signup = () => {
               Email:
             </label>
             <input
-              className="input input-primary w-full"
+              className="input input-bordered w-full"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               type="text"
@@ -68,7 +68,7 @@ const Signup = () => {
               Password:
             </label>
             <input
-              className="input input-primary w-full"
+              className="input input-bordered w-full"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               type="password"

@@ -33,13 +33,14 @@ export default function PostDetail() {
   }
 
   return (
-    <div className="flex flex-col items-center justify-center p-4">
-      <h2 className="card-title text-center text-4xl">{post.title}</h2>
-      <div className="text-center w-full max-w-5xl text-xl mt-4 p-4">{post.body}</div>
-      <div className="mt-4 text-center">
-        <p className="text-xl text-gray-500">Writen on {new Date(post.created_at).toLocaleString()}</p>
-      </div>
-      <div className="card-actions justify-center mt-4">
+    <div className="flex flex-col">
+      <h2 className="card-title p-6 text-4xl">{post.title}</h2>
+      <div className="text-xl leading-loose p-6">{post.body}</div>
+      <div>
+        <p className="text-xl p-4 text-gray-500">
+          Writen on {new Date(post.created_at).toLocaleString()}
+        </p>
+
         <button className="btn btn-link" onClick={() => router.push("/posts")}>
           Back to Posts
         </button>
