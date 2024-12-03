@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import axios from "axios";
+import backend from "../network/backend";
 
 const PostCreate = () => {
   const [postData, setPostData] = useState({
@@ -24,8 +24,8 @@ const PostCreate = () => {
       updated_at: new Date().toISOString(),
     };
 
-    axios
-      .post("http://localhost:8080/posts", payload)
+  backend
+      .post("/posts", payload)
       .then((response) => {
         console.log("Post created successfully:", response.data);
         setPostData({
