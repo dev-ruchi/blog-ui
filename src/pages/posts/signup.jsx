@@ -16,7 +16,7 @@ const Signup = () => {
     };
 
     backend
-      .post("/signup", payload)
+      .post("/users", payload)
       .then((response) => {
         console.log(response.data);
 
