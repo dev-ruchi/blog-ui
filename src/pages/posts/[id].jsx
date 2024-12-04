@@ -32,6 +32,7 @@ export default function PostDetail() {
     );
   }
 
+
   return (
     <div className="flex flex-col max-w-4xl mx-auto">
       <div className="p-16">
