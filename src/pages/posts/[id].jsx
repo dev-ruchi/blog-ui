@@ -7,6 +7,7 @@ export default function PostDetail() {
   const { id } = router.query; // Get the `id` from the route
   const [post, setPost] = useState(null); // Post data
   const [error, setError] = useState(null); // Error message
+  const [text, setText] = useState("");
 
   useEffect(() => {
     if (id) {
@@ -32,6 +33,25 @@ export default function PostDetail() {
     );
   }
 
+  const addComment = (e) => {
+    e.preventDefault();
+
+    const payload = {
+      text,
+      author: id,
+    };
+
+    backend
+      .post(`/posts/${id}/comments`, payload)
+      .then((response) => {
+        console.log("Comment created successfully:", response.data);
+        setText("");
+      })
+      .catch((error) => {
+        console.error("Error creating comment:", error);
+        alert("Error creating comment.");
+      });
+  };
 
   return (
     <div className="flex flex-col max-w-4xl mx-auto">
@@ -56,6 +76,22 @@ export default function PostDetail() {
             Back to Posts
           </button>
         </div>
+      </div>
+
+      {/* Comment form  */}
+
+      <div className="flex flex-col items-center max-w-4xl  gap-4">
+        <textarea
+          type="text"
+          name="comment"
+          value={text}
+          onChange={(e) => setText(e.target.value)}
+          placeholder="Enter your comment here..."
+          className="textarea textarea-bordered textarea-md w-full max-w-xs"
+        ></textarea>
+        <button type="submit" className="btn btn-primary w-80">
+          Add Comment
+        </button>
       </div>
     </div>
   );

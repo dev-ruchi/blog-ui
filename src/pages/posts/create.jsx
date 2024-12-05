@@ -1,11 +1,16 @@
 import React, { useState } from "react";
+import { useRouter } from 'next/router';
 import backend from "../network/backend";
 
+
 const PostCreate = () => {
+  
   const [postData, setPostData] = useState({
     title: "",
-    body: ""
+    body: "",
   });
+
+ 
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -14,6 +19,7 @@ const PostCreate = () => {
       [name]: value, // No need to check for user_id anymore
     }));
   };
+ 
 
   const addPost = (e) => {
     e.preventDefault();
@@ -24,14 +30,14 @@ const PostCreate = () => {
       updated_at: new Date().toISOString(),
     };
 
-  backend
+    backend
       .post("/posts", payload)
       .then((response) => {
         console.log("Post created successfully:", response.data);
         setPostData({
           title: "",
           body: "",
-        })
+        });
       })
       .catch((error) => {
         console.error("Error creating post:", error);
@@ -39,6 +45,7 @@ const PostCreate = () => {
       });
   };
 
+ 
   return (
     <div className="flex flex-col items-center py-8 min-h-screen">
       <h1 className="text-3xl font-bold text-center mb-6">Create a New Post</h1>
@@ -65,6 +72,8 @@ const PostCreate = () => {
           Submit
         </button>
       </form>
+
+
     </div>
   );
 };
