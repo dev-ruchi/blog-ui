@@ -86,11 +86,11 @@ export default function PostDetail() {
           name="comment"
           value={text}
           onChange={(e) => setText(e.target.value)}
-          placeholder="Enter your comment here..."
+          placeholder="Comment here..."
           className="textarea textarea-bordered textarea-md w-full max-w-xs"
         ></textarea>
-        <button type="submit" className="btn btn-primary w-80">
-          Add Comment
+        <button type="submit" className="btn btn-primary w-32 ml-48">
+         Comment
         </button>
       </div>
     </div>
