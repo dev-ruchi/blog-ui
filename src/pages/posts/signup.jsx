@@ -17,26 +17,26 @@ const Signup = () => {
 
     backend
       .post("/auth/signup", payload, {
-        method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
       })
       .then((response) => {
+        // Log the response data
         console.log(response.data);
 
         setName("");
         setEmail("");
         setPassword("");
-      })
-      .then((result) => {
-        if (result.error) {
-          console.log(result);
-          alert(result.error);
+
+        if (response.data.error) {
+          console.log(response.data);
+          alert(response.data.error);
           return;
         }
 
-        localStorage.setItem("token", result.token);
+        // Save the token to localStorage
+        localStorage.setItem("token", response.data.token);
       })
       .catch((error) => {
         console.log(error);
